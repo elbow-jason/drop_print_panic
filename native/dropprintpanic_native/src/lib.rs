@@ -21,7 +21,7 @@ rustler::init! {
 }
 
 fn load<'a>(env: Env<'a>, _load_info: Term<'a>) -> bool {
-    rustler::resource!(Wrapper<NamedThing>, env);
+    rustler::resource!(NamedThing, env);
     true
 }
 
@@ -35,29 +35,27 @@ impl NamedThing {
     }
 }
 
-struct Wrapper<T> {
-    wrapped: T,
-}
+// struct Wrapper<T> {
+//     wrapped: T,
+// }
 
-impl<T> Wrapper<T> {
-    fn new(wrapped: T) -> Wrapper<T> {
-        Wrapper { wrapped }
-    }
-}
+// impl<T> Wrapper<T> {
+//     fn new(wrapped: T) -> Wrapper<T> {
+//         Wrapper { wrapped }
+//     }
+// }
 
 #[derive(NifStruct)]
 #[must_use]
 #[module = "DropPrintPanic.Panicker"]
 pub struct Panicker {
-    __native__: ResourceArc<Wrapper<NamedThing>>,
-    _unconstructable: (),
+    __native__: ResourceArc<NamedThing>,
 }
 
 impl Panicker {
     pub fn new(name: String) -> Panicker {
         Panicker {
-            __native__: ResourceArc::new(Wrapper::new(NamedThing::new(name))),
-            _unconstructable: (),
+            __native__: ResourceArc::new(NamedThing::new(name)),
         }
     }
 }
@@ -76,15 +74,13 @@ impl Drop for Panicker {
 #[must_use]
 #[module = "DropPrintPanic.NonPanicker"]
 pub struct NonPanicker {
-    __native__: ResourceArc<Wrapper<NamedThing>>,
-    _unconstructable: (),
+    __native__: ResourceArc<NamedThing>,
 }
 
 impl NonPanicker {
     pub fn new(name: String) -> NonPanicker {
         NonPanicker {
-            __native__: ResourceArc::new(Wrapper::new(NamedThing::new(name))),
-            _unconstructable: (),
+            __native__: ResourceArc::new(NamedThing::new(name)),
         }
     }
 }
@@ -103,7 +99,7 @@ fn new_panicker(name: String) -> Panicker {
 
 #[rustler::nif]
 fn panicker_name<'a>(panicker: Panicker) -> String {
-    panicker.__native__.wrapped.name.clone()
+    panicker.__native__.name.clone()
 }
 
 #[rustler::nif]
@@ -113,5 +109,5 @@ fn new_non_panicker(name: String) -> NonPanicker {
 
 #[rustler::nif]
 fn non_panicker_name<'a>(non_panicker: NonPanicker) -> String {
-    non_panicker.__native__.wrapped.name.clone()
+    non_panicker.__native__.name.clone()
 }
