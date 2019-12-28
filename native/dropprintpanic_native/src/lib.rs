@@ -35,16 +35,6 @@ impl NamedThing {
     }
 }
 
-// struct Wrapper<T> {
-//     wrapped: T,
-// }
-
-// impl<T> Wrapper<T> {
-//     fn new(wrapped: T) -> Wrapper<T> {
-//         Wrapper { wrapped }
-//     }
-// }
-
 #[derive(NifStruct)]
 #[must_use]
 #[module = "DropPrintPanic.Panicker"]
