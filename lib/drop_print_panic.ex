@@ -5,7 +5,7 @@ defmodule DropPrintPanic do
   alias DropPrintPanic.Panicker
   alias DropPrintPanic.NonPanicker
 
-  def demo(n \\ 40) do
+  def demo(n \\ 10) do
     single_threaded_non_print_does_not_panic(n)
     single_threaded_print_does_not_panic(n)
     parallel_non_print_does_not_panic(n)
