@@ -1,0 +1,17 @@
+[package]
+name = "dropprintpanic_native"
+version = "0.1.0"
+authors = []
+edition = "2018"
+
+[lib]
+name = "dropprintpanic_native"
+path = "src/lib.rs"
+crate-type = ["dylib"]
+
+
+[dependencies]
+# 96e6721 is latest commit on master as of 27 DEC 2019.
+rustler = { git = "https://github.com/rusterlium/rustler.git", rev = "96e6721"}
+lazy_static = "1.0"
+
