@@ -48,7 +48,6 @@ impl<T> Wrapper<T> {
 #[derive(NifStruct)]
 #[must_use]
 #[module = "DropPrintPanic.Panicker"]
-#[repr(C)]
 pub struct Panicker {
     __native__: ResourceArc<Wrapper<NamedThing>>,
     _unconstructable: (),
@@ -76,7 +75,6 @@ impl Drop for Panicker {
 #[derive(NifStruct)]
 #[must_use]
 #[module = "DropPrintPanic.NonPanicker"]
-#[repr(C)]
 pub struct NonPanicker {
     __native__: ResourceArc<Wrapper<NamedThing>>,
     _unconstructable: (),

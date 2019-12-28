@@ -23,7 +23,7 @@ defmodule DropPrintPanic do
     IO.puts("Running parallel_print_panics...")
     panicker = Panicker.new("PANICKER_NAME")
     ensure_name_is_binary_concurrently(panicker, n)
-    IO.puts("Finished parallel_print_panics...THIS SHOULD NOT BE REACHED!")
+    IO.puts("Finished parallel_print_panics. It did not panic with concurrency of #{n}. Try it again.")
   end
 
   def single_threaded_non_print_does_not_panic(n) do
